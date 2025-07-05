@@ -13,6 +13,9 @@ function openTab(tabId) {
   document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
   document.querySelector(`.tab-button[onclick="openTab('${tabId}')"]`).classList.add("active");
   document.getElementById(tabId).classList.add("active");
+  if (tabId === "statsTab") {
+    updateStatsTable();  // 統計タブを開いたときに最新状態にする
+  }
 }
 
 function addCorrect() {
@@ -68,6 +71,7 @@ function updateDisplay() {
 }
 
 function saveCounts() {
+  console.log("save counts");
   document.cookie = `correct=${correct}; path=/`;
   document.cookie = `wrong=${wrong}; path=/`;
 }
@@ -78,6 +82,7 @@ function loadCounts() {
 }
 
 function getCookie(name) {
+  console.log(document.cookie)
   const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
   return v ? parseInt(v[2]) : 0;
 }
@@ -95,8 +100,11 @@ function updateStats(type, delta=1) {
 }
 
 function updateStatsTable() {
+  console.log("update stats table");
   const stats = JSON.parse(getCookie("stats") || "{}");
+  console.log(stats);
   const tbody = document.querySelector("#statsTable tbody");
+  console.log(tbody);
   tbody.innerHTML = "";
   Object.keys(stats).sort().reverse().forEach(date => {
     const tr = document.createElement("tr");
