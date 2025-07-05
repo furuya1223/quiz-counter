@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>クイズ点数管理</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab('scoreTab')">点数管理</button>
+    <button class="tab-button" onclick="openTab('statsTab')">統計</button>
+  </div>
+
+  <div id="scoreTab" class="tab-content active">
+    <h2>点数管理</h2>
+    <div class="score-display">
+      <div>正解数: <span id="correctCount">0</span></div>
+      <div>誤答数: <span id="wrongCount">0</span></div>
+    </div>
+    <div class="buttons">
+      <button class="correct-btn" onclick="addCorrect()">◯</button>
+      <button class="wrong-btn" onclick="addWrong()">✕</button>
+      <button class="reset-btn" onclick="resetCounts()">Reset</button>
+      <button class="undo-btn" onclick="undoAction()">Undo</button>
+    </div>
+  </div>
+
+  <div id="statsTab" class="tab-content">
+    <h2>統計</h2>
+    <table id="statsTable">
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>正解数</th>
+          <th>誤答数</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

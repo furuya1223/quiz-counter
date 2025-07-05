@@ -1,0 +1,85 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 15px;
+  cursor: pointer;
+  background: #ddd;
+  border: none;
+  outline: none;
+}
+
+.tab-button.active {
+  background: #bbb;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  background: white;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.score-display {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.correct-btn, .wrong-btn, .reset-btn, .undo-btn {
+  padding: 20px 40px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.correct-btn {
+  background: red;
+  color: white;
+}
+
+.wrong-btn {
+  background: blue;
+  color: white;
+}
+
+.reset-btn, .undo-btn {
+  background: gray;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background: #eee;
+}
