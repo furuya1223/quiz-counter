@@ -71,7 +71,6 @@ function updateDisplay() {
 }
 
 function saveCounts() {
-  console.log("save counts");
   document.cookie = `correct=${correct}; path=/`;
   document.cookie = `wrong=${wrong}; path=/`;
 }
