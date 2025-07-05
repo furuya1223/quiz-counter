@@ -82,14 +82,28 @@ function loadCounts() {
 }
 
 function getCookie(name) {
-  console.log(document.cookie)
-  const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  console.log('get cookie: ' + name);
+  console.log(document.cookie);
+  const re = new RegExp(name + '=([^;]*)(;|$)');
+
+  // const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  const v = document.cookie.match(re);
   return v ? parseInt(v[2]) : 0;
 }
 
+function getStats() {
+  console.log('get stats');
+  console.log(document.cookie);
+  const re = new RegExp('stats=([^;]*)(;|$)');
+  const v = document.cookie.match(re);
+  console.log(v);
+  return v[1];
+}
+
 function updateStats(type, delta=1) {
+  console.log("update stats");
   const today = new Date().toISOString().split('T')[0];
-  const stats = JSON.parse(getCookie("stats") || "{}");
+  const stats = JSON.parse(getStats() || "{}");
 
   if (!stats[today]) stats[today] = { correct: 0, wrong: 0 };
   if (type === "correct") stats[today].correct = Math.max(0, stats[today].correct + delta);
@@ -101,7 +115,7 @@ function updateStats(type, delta=1) {
 
 function updateStatsTable() {
   console.log("update stats table");
-  const stats = JSON.parse(getCookie("stats") || "{}");
+  const stats = JSON.parse(getStats() || "{}");
   console.log(stats);
   const tbody = document.querySelector("#statsTable tbody");
   console.log(tbody);
