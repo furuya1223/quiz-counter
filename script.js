@@ -85,23 +85,17 @@ function getCookie(name) {
   console.log('get cookie: ' + name);
   console.log(document.cookie);
   const re = new RegExp(name + '=([^;]*)(;|$)');
-
-  // const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
   const v = document.cookie.match(re);
   return v ? parseInt(v[2]) : 0;
 }
 
 function getStats() {
-  console.log('get stats');
-  console.log(document.cookie);
   const re = new RegExp('stats=([^;]*)(;|$)');
   const v = document.cookie.match(re);
-  console.log(v);
-  return v[1];
+  return v ? v[1] : null;
 }
 
 function updateStats(type, delta=1) {
-  console.log("update stats");
   const today = new Date().toISOString().split('T')[0];
   const stats = JSON.parse(getStats() || "{}");
 
@@ -114,11 +108,8 @@ function updateStats(type, delta=1) {
 }
 
 function updateStatsTable() {
-  console.log("update stats table");
   const stats = JSON.parse(getStats() || "{}");
-  console.log(stats);
   const tbody = document.querySelector("#statsTable tbody");
-  console.log(tbody);
   tbody.innerHTML = "";
   Object.keys(stats).sort().reverse().forEach(date => {
     const tr = document.createElement("tr");
