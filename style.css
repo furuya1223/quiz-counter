@@ -83,3 +83,17 @@ th, td {
 th {
   background: #eee;
 }
+
+.memo-area {
+  margin: 20px;
+}
+
+.memo-area textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}

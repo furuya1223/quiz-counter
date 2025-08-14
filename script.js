@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCounts();
   updateDisplay();
   updateStatsTable();
+  loadMemo();
+  document.getElementById("memoInput").addEventListener("input", saveMemo);
 });
 
 function openTab(tabId) {
@@ -77,7 +79,9 @@ function saveCounts() {
 
 function loadCounts() {
   correct = getCookie("correct") || 0;
+  console.log(correct);
   wrong = getCookie("wrong") || 0;
+  console.log(wrong);
 }
 
 function getCookie(name) {
@@ -85,7 +89,17 @@ function getCookie(name) {
   console.log(document.cookie);
   const re = new RegExp(name + '=([^;]*)(;|$)');
   const v = document.cookie.match(re);
-  return v ? parseInt(v[2]) : 0;
+  console.log(v);
+  return v ? parseInt(v[1]) : 0;
+}
+
+function getMemo() {
+  console.log('get cookie: memo');
+  console.log(document.cookie);
+  const re = new RegExp('memo=([^;]*)(;|$)');
+  const v = document.cookie.match(re);
+  console.log(v);
+  return v ? v[1] : null;
 }
 
 function getStats() {
@@ -95,7 +109,11 @@ function getStats() {
 }
 
 function updateStats(type, delta=1) {
-  const today = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000); // JST = UTC + 9h
+  const today = jst.toISOString().split('T')[0];
+  console.log(jst);
+  console.log(today);
   const stats = JSON.parse(getStats() || "{}");
 
   if (!stats[today]) stats[today] = { correct: 0, wrong: 0 };
@@ -115,4 +133,16 @@ function updateStatsTable() {
     tr.innerHTML = `<td>${date}</td><td>${stats[date].correct}</td><td>${stats[date].wrong}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+function saveMemo() {
+  const memo = document.getElementById("memoInput").value;
+  document.cookie = `memo=${encodeURIComponent(memo)}; path=/; max-age=31536000`;
+}
+
+function loadMemo() {
+  const memo = getMemo();
+  if (memo !== null) {
+    document.getElementById("memoInput").value = decodeURIComponent(memo);
+  }
 }
