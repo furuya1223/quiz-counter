@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>クイズ点数管理</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
   <div class="tabs">
@@ -13,6 +14,9 @@
   </div>
 
   <div id="scoreTab" class="tab-content active">
+    <button id="themeToggle" class="theme-toggle material-symbols-outlined" title="テーマ切替">
+      light_mode
+    </button>
     <h2>点数管理</h2>
     <div class="score-display">
       <div>正解数: <span id="correctCount">0</span></div>
@@ -31,6 +35,9 @@
   </div>
 
   <div id="statsTab" class="tab-content">
+    <button id="themeToggle_stats" class="theme-toggle material-symbols-outlined" title="テーマ切替">
+      light_mode
+    </button>
     <h2>統計</h2>
     <table id="statsTable">
       <thead>

@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCounts();
   updateDisplay();
   updateStatsTable();
+  loadTheme();
+  document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+  document.getElementById("themeToggle_stats").addEventListener("click", toggleTheme);
   loadMemo();
   document.getElementById("memoInput").addEventListener("input", saveMemo);
 });
@@ -145,4 +148,27 @@ function loadMemo() {
   if (memo !== null) {
     document.getElementById("memoInput").value = decodeURIComponent(memo);
   }
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle("dark");
+  document.cookie = `theme=${isDark ? 'dark' : 'light'}; path=/; max-age=31536000`;
+
+  const icon = document.getElementById("themeToggle");
+  icon.textContent = isDark ? "dark_mode" : "light_mode";
+
+  const icon_stats = document.getElementById("themeToggle_stats");
+  icon_stats.textContent = isDark ? "dark_mode" : "light_mode";
+}
+
+function loadTheme() {
+  const theme = getCookie("theme");
+  const isDark = theme === "dark";
+  if (isDark) document.body.classList.add("dark");
+
+  const icon = document.getElementById("themeToggle");
+  icon.textContent = isDark ? "dark_mode" : "light_mode";
+
+  const icon_stats = document.getElementById("themeToggle_stats");
+  icon_stats.textContent = isDark ? "dark_mode" : "light_mode";
 }

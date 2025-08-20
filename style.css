@@ -3,6 +3,19 @@ body {
   margin: 0;
   padding: 0;
   background: #f8f8f8;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.tab-button,
+.tab-content,
+.correct-btn,
+.wrong-btn,
+.reset-btn,
+.undo-btn,
+.memo-area textarea,
+table,
+th,
+td {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .tabs {
@@ -55,12 +68,12 @@ body {
 }
 
 .correct-btn {
-  background: red;
+  background: #ec0000;
   color: white;
 }
 
 .wrong-btn {
-  background: blue;
+  background: #0031d8;
   color: white;
 }
 
@@ -96,4 +109,84 @@ th {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+}
+
+/* Material Symbols アイコン */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* テーマトグルボタン配置・見た目 */
+.theme-toggle {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark .tab-button {
+  background: #333;
+  color: #eee;
+}
+
+body.dark .tab-button.active {
+  background: #555;
+}
+
+body.dark .tab-content {
+  background: #2c2c2c;
+}
+
+body.dark .correct-btn {
+  background: #fe3939;
+}
+
+body.dark .wrong-btn {
+  background: #264af4;
+}
+
+body.dark .reset-btn,
+body.dark .undo-btn {
+  background: #555;
+  color: #ddd;
+}
+
+body.dark table {
+  background: #333;
+  color: #eee;
+}
+
+body.dark th {
+  background: #444;
+}
+
+body.dark td {
+  border-color: #555;
+}
+
+body.dark .memo-area textarea {
+  background: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #555;
 }
